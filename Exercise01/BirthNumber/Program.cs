@@ -12,16 +12,17 @@ namespace BirthNumber
         // 01 + 50 -> female
         static void Main(string[] args)
         {
-            while (true)
+            var input = " ";
+            while (input != "exit")
             {
-                var input = Console.ReadLine();
+                input = Console.ReadLine();
                 Console.WriteLine(ParseGenderFromBirthNumber(input));
             }
         }
 
-        static string ParseGenderFromBirthNumber(string birthNumber)
+        private static string ParseGenderFromBirthNumber(string birthNumber)
         {
-            if (birthNumber.Length != 11 || birthNumber[6] != '/')
+            if (ValidateBirthNumber(birthNumber))
             {
                 return "Wrong birth number format.";
             }
@@ -33,6 +34,11 @@ namespace BirthNumber
             }
 
             return "male";
+        }
+
+        private static bool ValidateBirthNumber(string birthNumber)
+        {
+            return birthNumber.Length != 11 || birthNumber[6] != '/';
         }
     }
 }
