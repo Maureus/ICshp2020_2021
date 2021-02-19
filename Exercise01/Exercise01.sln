@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Address", "Exercise01\Address.csproj", "{641CB7E2-5235-4F19-ABAD-01C47F3C5D7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Address", "Address\Address.csproj", "{641CB7E2-5235-4F19-ABAD-01C47F3C5D7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alphabet", "Alphabet\Alphabet.csproj", "{FAFDF42C-32CF-4B83-9436-8012A68AE61D}"
 EndProject
