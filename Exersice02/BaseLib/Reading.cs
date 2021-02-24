@@ -3,8 +3,8 @@
 namespace Fei {
     namespace BaseLib {
         public class Reading {
-            private static void PrintYourAge() {
-                Console.Write("Your age: ");
+            private static void PrintYourAge(string input) {
+                Console.Write($"{input}: ");
             }
             
             /// <summary>
@@ -12,8 +12,8 @@ namespace Fei {
             /// </summary>
             /// <returns>int</returns>
             /// <exception cref="ArgumentException"></exception>
-            public static int ReadInt() {
-                PrintYourAge();
+            public static int ReadInt(string input) {
+                PrintYourAge(input);
                 var text = Console.ReadLine();
                 if (!int.TryParse(text, out int result)) {
                     throw new ArgumentException($"Cannot parse int from <{text}>.");
@@ -27,8 +27,8 @@ namespace Fei {
             /// </summary>
             /// <returns>double</returns>
             /// <exception cref="ArgumentException"></exception>
-            public static double ReadDouble() {
-                PrintYourAge();
+            public static double ReadDouble(string input) {
+                PrintYourAge(input);
                 var text = Console.ReadLine();
                 if (!double.TryParse(text, out double result)) {
                     throw new ArgumentException($"Cannot parse double from <{text}>.");
@@ -42,8 +42,8 @@ namespace Fei {
             /// </summary>
             /// <returns>string</returns>
             /// <exception cref="ArgumentException"></exception>
-            public static string ReadString() {
-                PrintYourAge();
+            public static string ReadString(string input) {
+                PrintYourAge(input);
                 var text = Console.ReadLine();
                 if (text.Length == 0) {
                     throw new ArgumentException($"Entered string is empty.");
@@ -56,8 +56,8 @@ namespace Fei {
             /// </summary>
             /// <returns></returns>
             /// <exception cref="ArgumentException"></exception>
-            public static char ReadChar() {
-                PrintYourAge();
+            public static char ReadChar(string input) {
+                PrintYourAge(input);
                 var text = Console.ReadLine();
                 if (!char.TryParse(text, out char result)) {
                     throw new ArgumentException($"Cannot parse char from <{text}>.");
