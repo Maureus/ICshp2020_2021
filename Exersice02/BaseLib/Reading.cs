@@ -1,7 +1,11 @@
 ﻿using System;
 
+
 namespace Fei {
     namespace BaseLib {
+        /// <summary>
+        /// Library for parsing int, double, char or string from console input
+        /// </summary>
         public class Reading {
             private static void PrintYourAge(string input) {
                 Console.Write($"{input}: ");

@@ -27,7 +27,7 @@ namespace FieldApp {
             PrintMenu();
             while (true) {
                 try {
-                    var selectedMenu = Reading.ReadInt("Please enter number from menu: ");
+                    var selectedMenu = Reading.ReadInt("Please enter number from menu");
                     switch (selectedMenu) {
                         case 1:
                             EnterNewDouble(ref fieldOfDoubles, ref position);
@@ -57,29 +57,37 @@ namespace FieldApp {
                             Console.WriteLine("Exiting!");
                             break;
                         default:
-                            var defaultColor = Console.ForegroundColor;
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Unknown command!");
-                            Console.ForegroundColor = defaultColor;
+                            WriteLineColorRed("Unknown command!");
                             break;
                     }
                 }
                 catch (Exception e) {
-                    Console.WriteLine(e);
+                    WriteLineColorRed(e.Message);
                 }
             }
         }
 
-        private static void CocktailSortDescending(double[] a) {
+        private static void WriteLineColorRed(string input) {
+            var defaultColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(input);
+            Console.ForegroundColor = defaultColor;
+        }
+
+        private static void CocktailSortDescending(double[] fieldOfDoubles) {
+            if (fieldOfDoubles.Length == 0) {
+                WriteLineColorRed("Array is empty!");
+            }
+
             var swapped = true;
             var start = 0;
-            var end = a.Length;
+            var end = fieldOfDoubles.Length;
 
             while (swapped) {
                 swapped = false;
 
                 for (var i = start; i < end - 1; ++i) {
-                    swapped = IsSwappedDescending(a, swapped, i);
+                    swapped = IsSwappedDescending(fieldOfDoubles, swapped, i);
                 }
 
                 if (!swapped)
@@ -89,7 +97,7 @@ namespace FieldApp {
                 end--;
 
                 for (var i = end - 1; i >= start; i--) {
-                    swapped = IsSwappedDescending(a, swapped, i);
+                    swapped = IsSwappedDescending(fieldOfDoubles, swapped, i);
                 }
 
                 start++;
@@ -108,6 +116,10 @@ namespace FieldApp {
         }
 
         private static void FindFirstOccurenceOfNumber(double[] fieldOfDoubles) {
+            if (fieldOfDoubles.Length == 0) {
+                WriteLineColorRed("Array is empty!");
+            }
+
             var input = Reading.ReadDouble("Please enter double you want to find");
             for (int i = 0; i < fieldOfDoubles.Length; i++) {
                 if (fieldOfDoubles[i].Equals(input)) {
@@ -116,13 +128,14 @@ namespace FieldApp {
                 }
             }
 
-            var defaultColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Number <{input}> was not found in array!");
-            Console.ForegroundColor = defaultColor;
+            WriteLineColorRed($"Number <{input}> was not found in array!");
         }
 
         private static void FindLastOccurenceOfNumber(double[] fieldOfDoubles) {
+            if (fieldOfDoubles.Length == 0) {
+                WriteLineColorRed("Array is empty!");
+            }
+
             var input = Reading.ReadDouble("Please enter double you want to find");
             for (int i = fieldOfDoubles.Length - 1; i > 0; i--) {
                 if (fieldOfDoubles[i].Equals(input)) {
@@ -131,23 +144,20 @@ namespace FieldApp {
                 }
             }
 
-            var defaultColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Number <{input}> was not found in array!");
-            Console.ForegroundColor = defaultColor;
+            WriteLineColorRed($"Number <{input}> was not found in array!");
         }
 
         private static void FindMinInArray(double[] fieldOfDoubles) {
+            if (fieldOfDoubles.Length == 0) {
+                WriteLineColorRed("Array is empty!");
+            }
+
             Console.WriteLine($"Min in array: <{fieldOfDoubles.Prepend(double.MaxValue).Min()}>.");
         }
 
         private static void PrintNumbersFromField(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
-                var defaultColor = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Field is empty!");
-                Console.ForegroundColor = defaultColor;
-                return;
+                WriteLineColorRed("Array is empty!");
             }
 
             var sb = new StringBuilder();
@@ -178,16 +188,20 @@ namespace FieldApp {
             fieldOfDoubles[position++] = firstInput;
         }
 
-        private static void CocktailSortAscending(double[] a) {
+        private static void CocktailSortAscending(double[] fieldOfDoubles) {
+            if (fieldOfDoubles.Length == 0) {
+                WriteLineColorRed("Array is empty!");
+            }
+
             var swapped = true;
             var start = 0;
-            var end = a.Length;
+            var end = fieldOfDoubles.Length;
 
             while (swapped) {
                 swapped = false;
 
                 for (var i = start; i < end - 1; ++i) {
-                    swapped = IsSwappedAscending(a, swapped, i);
+                    swapped = IsSwappedAscending(fieldOfDoubles, swapped, i);
                 }
 
                 if (!swapped)
@@ -197,7 +211,7 @@ namespace FieldApp {
                 end--;
 
                 for (var i = end - 1; i >= start; i--) {
-                    swapped = IsSwappedAscending(a, swapped, i);
+                    swapped = IsSwappedAscending(fieldOfDoubles, swapped, i);
                 }
 
                 start++;
