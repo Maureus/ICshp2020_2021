@@ -187,7 +187,7 @@ namespace FieldApp {
                 swapped = false;
 
                 for (var i = start; i < end - 1; ++i) {
-                    swapped = IsSwapped(a, swapped, i);
+                    swapped = IsSwappedAscending(a, swapped, i);
                 }
 
                 if (!swapped)
@@ -197,14 +197,14 @@ namespace FieldApp {
                 end--;
 
                 for (var i = end - 1; i >= start; i--) {
-                    swapped = IsSwapped(a, swapped, i);
+                    swapped = IsSwappedAscending(a, swapped, i);
                 }
 
                 start++;
             }
         }
 
-        private static bool IsSwapped(double[] a, bool swapped, int i) {
+        private static bool IsSwappedAscending(double[] a, bool swapped, int i) {
             if (a[i] > a[i + 1]) {
                 var temp = a[i];
                 a[i] = a[i + 1];
