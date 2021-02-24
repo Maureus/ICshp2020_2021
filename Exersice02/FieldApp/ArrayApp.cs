@@ -4,9 +4,7 @@ using System.Text;
 using Fei.BaseLib;
 
 namespace FieldApp {
-    class FieldApp {
-        private const int MaxSize = 50;
-
+    class ArrayApp {
         private static void PrintMenu() {
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("\nApp menu:\n"
@@ -52,10 +50,10 @@ namespace FieldApp {
                             break;
                         case 8:
                             PrintMenu();
-                            return;
+                            break;
                         case 9:
                             Console.WriteLine("Exiting!");
-                            break;
+                            return;
                         default:
                             WriteLineColorRed("Unknown command!");
                             break;
@@ -70,13 +68,14 @@ namespace FieldApp {
         private static void WriteLineColorRed(string input) {
             var defaultColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(input);
+            Console.WriteLine("\n"+input+"\n");
             Console.ForegroundColor = defaultColor;
         }
 
         private static void CocktailSortDescending(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 WriteLineColorRed("Array is empty!");
+                return;
             }
 
             var swapped = true;
@@ -118,6 +117,7 @@ namespace FieldApp {
         private static void FindFirstOccurenceOfNumber(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 WriteLineColorRed("Array is empty!");
+                return;
             }
 
             var input = Reading.ReadDouble("Please enter double you want to find");
@@ -134,6 +134,7 @@ namespace FieldApp {
         private static void FindLastOccurenceOfNumber(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 WriteLineColorRed("Array is empty!");
+                return;
             }
 
             var input = Reading.ReadDouble("Please enter double you want to find");
@@ -150,6 +151,7 @@ namespace FieldApp {
         private static void FindMinInArray(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 WriteLineColorRed("Array is empty!");
+                return;
             }
 
             Console.WriteLine($"Min in array: <{fieldOfDoubles.Prepend(double.MaxValue).Min()}>.");
@@ -158,6 +160,7 @@ namespace FieldApp {
         private static void PrintNumbersFromField(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 WriteLineColorRed("Array is empty!");
+                return;
             }
 
             var sb = new StringBuilder();
@@ -190,7 +193,8 @@ namespace FieldApp {
 
         private static void CocktailSortAscending(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
-                WriteLineColorRed("Array is empty!");
+                WriteLineColorRed("Array is empty!");  
+                return;
             }
 
             var swapped = true;
