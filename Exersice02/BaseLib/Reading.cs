@@ -7,7 +7,7 @@ namespace Fei {
         /// Library for parsing int, double, char or string from console input
         /// </summary>
         public class Reading {
-            private static void PrintYourAge(string input) {
+            private static void FormatInputString(string input) {
                 Console.Write($"{input}: ");
             }
             
@@ -17,7 +17,7 @@ namespace Fei {
             /// <returns>int</returns>
             /// <exception cref="ArgumentException"></exception>
             public static int ReadInt(string input) {
-                PrintYourAge(input);
+                FormatInputString(input);
                 var text = Console.ReadLine();
                 if (!int.TryParse(text, out int result)) {
                     throw new ArgumentException($"Cannot parse int from <{text}>.");
@@ -32,7 +32,7 @@ namespace Fei {
             /// <returns>double</returns>
             /// <exception cref="ArgumentException"></exception>
             public static double ReadDouble(string input) {
-                PrintYourAge(input);
+                FormatInputString(input);
                 var text = Console.ReadLine();
                 if (!double.TryParse(text, out double result)) {
                     throw new ArgumentException($"Cannot parse double from <{text}>.");
@@ -47,7 +47,7 @@ namespace Fei {
             /// <returns>string</returns>
             /// <exception cref="ArgumentException"></exception>
             public static string ReadString(string input) {
-                PrintYourAge(input);
+                FormatInputString(input);
                 var text = Console.ReadLine();
                 if (text.Length == 0) {
                     throw new ArgumentException($"Entered string is empty.");
@@ -61,7 +61,7 @@ namespace Fei {
             /// <returns></returns>
             /// <exception cref="ArgumentException"></exception>
             public static char ReadChar(string input) {
-                PrintYourAge(input);
+                FormatInputString(input);
                 var text = Console.ReadLine();
                 if (!char.TryParse(text, out char result)) {
                     throw new ArgumentException($"Cannot parse char from <{text}>.");

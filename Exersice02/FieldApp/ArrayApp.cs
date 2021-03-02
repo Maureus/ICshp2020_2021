@@ -4,49 +4,50 @@ using System.Text;
 using Fei.BaseLib;
 
 namespace FieldApp {
-    class ArrayApp {
-        private static void PrintMenu() {
-            Console.OutputEncoding = Encoding.UTF8;
-            Console.WriteLine("\nApp menu:\n"
-                              + "1. Zadaní prvků pole z klávesnice\n"
-                              + "2. Výpis pole na obrazovku\n"
-                              + "3. Utřídění pole vzestupně\n"
-                              + "4. Utřídění pole sestupně\n"
-                              + "5. Hledání minimálního prvku\n"
-                              + "6. Hledání prvního výskytu zadaného čísla\n"
-                              + "7. Hledání posledního výskytu zadaného čísla\n"
-                              + "8. Print menu\n"
-                              + "9. Konec programu\n");
+    internal class ArrayApp {
+        private const string Menu = @"App menu:
+1. Zadaní prvků pole z klávesnice
+2. Výpis pole na obrazovku
+3. Utřídění pole vzestupně
+4. Utřídění pole sestupně
+5. Hledání minimálního prvku
+6. Hledání prvního výskytu zadaného čísla
+7. Hledání posledního výskytu zadaného čísla
+8. Print menu
+9. Konec programu";
+
+        private double[] _fieldOfDoubles = new double[0];
+        private int _position = 0;
+
+        public ArrayApp() {
         }
 
-        static void Main(string[] args) {
-            double[] fieldOfDoubles = new double[0];
-            int position = 0;
+        public void Run() {
             PrintMenu();
             while (true) {
                 try {
                     var selectedMenu = Reading.ReadInt("Please enter number from menu");
                     switch (selectedMenu) {
                         case 1:
-                            EnterNewDouble(ref fieldOfDoubles, ref position);
+                            EnterNewDoubleToConsole(ref _fieldOfDoubles, ref _position);
                             break;
                         case 2:
-                            PrintNumbersFromField(fieldOfDoubles);
+                            PrintNumbersFromField(_fieldOfDoubles);
                             break;
                         case 3:
-                            CocktailSortAscending(fieldOfDoubles);
+                            SortUtils.CocktailSortAscending(_fieldOfDoubles);
                             break;
                         case 4:
-                            CocktailSortDescending(fieldOfDoubles);
+                            SortUtils.CocktailSortDescending(_fieldOfDoubles);
                             break;
                         case 5:
-                            FindMinInArray(fieldOfDoubles);
+                            FindMinInArrayAndPrintToConsole(_fieldOfDoubles);
                             break;
                         case 6:
-                            FindFirstOccurenceOfNumber(fieldOfDoubles);
+                            FindFirstOccurenceOfNumberAndPrintToConsole(_fieldOfDoubles);
                             break;
                         case 7:
-                            FindLastOccurenceOfNumber(fieldOfDoubles);
+                            FindLastOccurenceOfNumberAndPrintToConsole(_fieldOfDoubles);
                             break;
                         case 8:
                             PrintMenu();
@@ -65,56 +66,21 @@ namespace FieldApp {
             }
         }
 
-        private static void WriteLineColorRed(string input) {
+        private void PrintMenu() {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.WriteLine(Menu);
+        }
+
+        private void WriteLineColorRed(string input) {
             var defaultColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\n"+input+"\n");
+            Console.WriteLine("\n" + input + "\n");
             Console.ForegroundColor = defaultColor;
         }
 
-        private static void CocktailSortDescending(double[] fieldOfDoubles) {
-            if (fieldOfDoubles.Length == 0) {
-                WriteLineColorRed("Array is empty!");
-                return;
-            }
+        
 
-            var swapped = true;
-            var start = 0;
-            var end = fieldOfDoubles.Length;
-
-            while (swapped) {
-                swapped = false;
-
-                for (var i = start; i < end - 1; ++i) {
-                    swapped = IsSwappedDescending(fieldOfDoubles, swapped, i);
-                }
-
-                if (!swapped)
-                    break;
-
-                swapped = false;
-                end--;
-
-                for (var i = end - 1; i >= start; i--) {
-                    swapped = IsSwappedDescending(fieldOfDoubles, swapped, i);
-                }
-
-                start++;
-            }
-        }
-
-        private static bool IsSwappedDescending(double[] a, bool swapped, int i) {
-            if (a[i] < a[i + 1]) {
-                var temp = a[i];
-                a[i] = a[i + 1];
-                a[i + 1] = temp;
-                swapped = true;
-            }
-
-            return swapped;
-        }
-
-        private static void FindFirstOccurenceOfNumber(double[] fieldOfDoubles) {
+        private void FindFirstOccurenceOfNumberAndPrintToConsole(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 WriteLineColorRed("Array is empty!");
                 return;
@@ -131,7 +97,7 @@ namespace FieldApp {
             WriteLineColorRed($"Number <{input}> was not found in array!");
         }
 
-        private static void FindLastOccurenceOfNumber(double[] fieldOfDoubles) {
+        private void FindLastOccurenceOfNumberAndPrintToConsole(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 WriteLineColorRed("Array is empty!");
                 return;
@@ -148,7 +114,7 @@ namespace FieldApp {
             WriteLineColorRed($"Number <{input}> was not found in array!");
         }
 
-        private static void FindMinInArray(double[] fieldOfDoubles) {
+        private void FindMinInArrayAndPrintToConsole(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 WriteLineColorRed("Array is empty!");
                 return;
@@ -157,7 +123,7 @@ namespace FieldApp {
             Console.WriteLine($"Min in array: <{fieldOfDoubles.Prepend(double.MaxValue).Min()}>.");
         }
 
-        private static void PrintNumbersFromField(double[] fieldOfDoubles) {
+        private void PrintNumbersFromField(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 WriteLineColorRed("Array is empty!");
                 return;
@@ -176,7 +142,8 @@ namespace FieldApp {
             Console.WriteLine(sb.ToString());
         }
 
-        private static void EnterNewDouble(ref double[] fieldOfDoubles, ref int position) {
+
+        private void EnterNewDoubleToConsole(ref double[] fieldOfDoubles, ref int position) {
             var firstInput = Reading.ReadDouble("Please enter new double");
             var length = fieldOfDoubles.Length;
             if (length == position) {
@@ -191,46 +158,6 @@ namespace FieldApp {
             fieldOfDoubles[position++] = firstInput;
         }
 
-        private static void CocktailSortAscending(double[] fieldOfDoubles) {
-            if (fieldOfDoubles.Length == 0) {
-                WriteLineColorRed("Array is empty!");  
-                return;
-            }
-
-            var swapped = true;
-            var start = 0;
-            var end = fieldOfDoubles.Length;
-
-            while (swapped) {
-                swapped = false;
-
-                for (var i = start; i < end - 1; ++i) {
-                    swapped = IsSwappedAscending(fieldOfDoubles, swapped, i);
-                }
-
-                if (!swapped)
-                    break;
-
-                swapped = false;
-                end--;
-
-                for (var i = end - 1; i >= start; i--) {
-                    swapped = IsSwappedAscending(fieldOfDoubles, swapped, i);
-                }
-
-                start++;
-            }
-        }
-
-        private static bool IsSwappedAscending(double[] a, bool swapped, int i) {
-            if (a[i] > a[i + 1]) {
-                var temp = a[i];
-                a[i] = a[i + 1];
-                a[i + 1] = temp;
-                swapped = true;
-            }
-
-            return swapped;
-        }
+        
     }
 }
