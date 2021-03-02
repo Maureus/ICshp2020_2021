@@ -5,6 +5,8 @@ using Fei.BaseLib;
 
 namespace FieldApp {
     internal class ArrayApp {
+        public bool Debug { get; }
+
         private const string Menu = @"App menu:
 1. Zadaní prvků pole z klávesnice
 2. Výpis pole na obrazovku
@@ -19,7 +21,9 @@ namespace FieldApp {
         private double[] _fieldOfDoubles = new double[0];
         private int _position = 0;
 
-        public ArrayApp() {
+
+        public ArrayApp(bool debug) {
+            Debug = debug;
         }
 
         public void Run() {
@@ -35,10 +39,21 @@ namespace FieldApp {
                             PrintNumbersFromField(_fieldOfDoubles);
                             break;
                         case 3:
-                            SortUtils.CocktailSortAscending(_fieldOfDoubles);
+                            try {
+                                SortUtils.CocktailSortAscending(_fieldOfDoubles);
+                            }
+                            catch (Exception e) {
+                                WriteLineColorRed(e.Message);
+                            }
+
                             break;
                         case 4:
-                            SortUtils.CocktailSortDescending(_fieldOfDoubles);
+                            try {
+                                SortUtils.CocktailSortDescending(_fieldOfDoubles);
+                            }
+                            catch (Exception e) {
+                                WriteLineColorRed(e.Message);
+                            }
                             break;
                         case 5:
                             FindMinInArrayAndPrintToConsole(_fieldOfDoubles);
@@ -72,13 +87,14 @@ namespace FieldApp {
         }
 
         private void WriteLineColorRed(string input) {
-            var defaultColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\n" + input + "\n");
-            Console.ForegroundColor = defaultColor;
+            if (Debug) {
+                var defaultColor = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + input + "\n");
+                Console.ForegroundColor = defaultColor;
+            }
         }
 
-        
 
         private void FindFirstOccurenceOfNumberAndPrintToConsole(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
@@ -157,7 +173,5 @@ namespace FieldApp {
 
             fieldOfDoubles[position++] = firstInput;
         }
-
-        
     }
 }
