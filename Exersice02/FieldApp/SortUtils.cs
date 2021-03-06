@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace FieldApp {
-    internal class SortUtils {
+    internal static class SortUtils {
         public static void CocktailSortAscending(double[] fieldOfDoubles) {
             if (fieldOfDoubles.Length == 0) {
                 throw new ArgumentException("Array is empty!");

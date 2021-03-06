@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace Fei {
     namespace BaseLib {
         /// <summary>
