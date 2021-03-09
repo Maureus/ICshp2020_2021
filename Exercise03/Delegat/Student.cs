@@ -1,5 +1,5 @@
 ﻿namespace Delegat {
-    public class Student {
+    internal class Student {
         public string Name { get; set; }
         public int Id { get; set; }
         public Faculty Faculty { get; set; }

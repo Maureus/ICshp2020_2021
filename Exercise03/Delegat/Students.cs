@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Delegat {
-    public class Students {
+    internal class Students {
         private Student[] _students;
         public int Length { get; private set; }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using Fei.BaseLib;
 
 namespace Delegat {
     class Delegat {

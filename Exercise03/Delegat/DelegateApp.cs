@@ -1,15 +1,15 @@
 ﻿using System;
 
 namespace Delegat {
-    public class DelegateApp {
+    internal sealed class DelegateApp {
         private Students _students;
 
         private const string Menu = @"App menu:
 1 -> Generate 10 random students 
 2 -> Print students to console 
-3 -> Sort by id 
-4 -> Sort by name 
-5 -> Sort by faculty 
+3 -> Sort students by id 
+4 -> Sort students by name 
+5 -> Sort students by faculty 
 6 -> Print menu
 0 -> Exit ";
 
@@ -69,16 +69,16 @@ namespace Delegat {
             }
         }
 
-        private bool CompareStudentsByFaculties(Student firsStudent, Student secondStudent) {
-            return string.CompareOrdinal(firsStudent.Faculty.ToString(), secondStudent.Faculty.ToString()) > 0;
+        private bool CompareStudentsByFaculties(Student firstStudent, Student secondStudent) {
+            return string.CompareOrdinal(firstStudent.Faculty.ToString(), secondStudent.Faculty.ToString()) > 0;
         }
 
-        private bool CompareStudentsByIds(Student firsStudent, Student secondStudent) {
-            return firsStudent.Id > secondStudent.Id;
+        private bool CompareStudentsByIds(Student firstStudent, Student secondStudent) {
+            return firstStudent.Id > secondStudent.Id;
         }
 
-        private bool CompareStudentsByNames(Student firsStudent, Student secondStudent) {
-            return string.CompareOrdinal(firsStudent.Name, secondStudent.Name) > 0;
+        private bool CompareStudentsByNames(Student firstStudent, Student secondStudent) {
+            return string.CompareOrdinal(firstStudent.Name, secondStudent.Name) > 0;
         }
 
         private void GenerateTenRandomStudents() {
