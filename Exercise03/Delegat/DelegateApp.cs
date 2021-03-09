@@ -52,14 +52,16 @@ namespace Delegat {
         }
 
         private void SortStudents(SortBy attribute) {
-            if (attribute == SortBy.Faculty) {
-                _students.Sort(CompareStudentsByFaculties);
-            }
-            else if (attribute == SortBy.Id) {
-                _students.Sort(CompareStudentsByIds);
-            }
-            else if (attribute == SortBy.Name) {
-                _students.Sort(CompareStudentsByNames);
+            switch (attribute) {
+                case SortBy.Faculty:
+                    _students.Sort(CompareStudentsByFaculties);
+                    break;
+                case SortBy.Id:
+                    _students.Sort(CompareStudentsByIds);
+                    break;
+                case SortBy.Name:
+                    _students.Sort(CompareStudentsByNames);
+                    break;
             }
         }
 

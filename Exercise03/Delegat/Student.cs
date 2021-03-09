@@ -19,7 +19,7 @@
         }
     }
 
-    public enum Faculty {
+    internal enum Faculty {
         FES, FF, FEI, FCHT
     }
 }
