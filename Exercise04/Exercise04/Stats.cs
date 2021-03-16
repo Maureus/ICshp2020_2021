@@ -14,10 +14,7 @@ namespace Exercise04 {
         }
 
         private void OnUpdatedStats() {
-            UpdateStatsEventHandler handler = UpdatedStats;
-            if (handler != null) {
-                handler(this, new EventArgs());
-            }
+            UpdatedStats?.Invoke(this, new EventArgs());
         }
 
         public void Update(bool correctKey) {
